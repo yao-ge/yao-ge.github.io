@@ -1,1 +1,3 @@
-[personal github](https://github.com/yao-ge)
+## License
+
+Open sourced under the [MIT license](LICENSE.md).
