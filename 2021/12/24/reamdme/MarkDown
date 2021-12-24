@@ -20,15 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yao-ge.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="record the steps of building personal blog using hexo on mac    prepare [dependecies list](#dependecies\ list) [hexo common use](#hexo\ common\ use)   building [build hexo](#build\ hexo)    preparede">
+<meta name="description" content="record the steps of building personal blog using hexo on mac    prepare [dependecies list](#dependecies list) [hexo common use](#hexo common use)   building [build hexo](#build hexo)    preparedepend">
 <meta property="og:type" content="article">
 <meta property="og:title" content="reamdme">
 <meta property="og:url" content="https://yao-ge.github.io/2021/12/24/reamdme/MarkDown">
 <meta property="og:site_name" content="Cyberslacking space">
-<meta property="og:description" content="record the steps of building personal blog using hexo on mac    prepare [dependecies list](#dependecies\ list) [hexo common use](#hexo\ common\ use)   building [build hexo](#build\ hexo)    preparede">
+<meta property="og:description" content="record the steps of building personal blog using hexo on mac    prepare [dependecies list](#dependecies list) [hexo common use](#hexo common use)   building [build hexo](#build hexo)    preparedepend">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-24T14:09:33.000Z">
-<meta property="article:modified_time" content="2021-12-24T14:35:01.994Z">
+<meta property="article:modified_time" content="2021-12-24T14:45:40.947Z">
 <meta property="article:author" content="yao-ge">
 <meta property="article:tag" content="MarkDown">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-12-24 22:09:33 / Modified: 22:35:01" itemprop="dateCreated datePublished" datetime="2021-12-24T22:09:33+08:00">2021-12-24</time>
+      <time title="Created: 2021-12-24 22:09:33 / Modified: 22:45:40" itemprop="dateCreated datePublished" datetime="2021-12-24T22:09:33+08:00">2021-12-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -222,12 +222,12 @@
 </blockquote>
 <ul>
 <li><a href="#prepare">prepare</a><ul>
-<li>[dependecies list](#dependecies\ list)</li>
-<li>[hexo common use](#hexo\ common\ use)</li>
+<li>[dependecies list](#dependecies list)</li>
+<li>[hexo common use](#hexo common use)</li>
 </ul>
 </li>
 <li><a href="#building">building</a><ul>
-<li>[build hexo](#build\ hexo)</li>
+<li>[build hexo](#build hexo)</li>
 </ul>
 </li>
 </ul>
