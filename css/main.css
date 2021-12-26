@@ -1626,7 +1626,7 @@ pre code {
   text-overflow: ellipsis;
 }
 .post-toc .nav .nav-child {
-  display: none;
+  display: block;
 }
 .post-toc .nav .active > .nav-child {
   display: block;
@@ -2888,7 +2888,7 @@ mark.search-keyword {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #e539f2;
+  background: #8be28e;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
