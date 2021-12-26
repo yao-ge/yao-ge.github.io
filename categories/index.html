@@ -209,7 +209,7 @@ function show_date_time(){
     e_minsold=(e_hrsold-hrsold)*60;
     minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
     seconds=setzero(Math.floor((e_minsold-minsold)*60));
-    document.getElementById('days').innerHTML="been running "+daysold+"d "+hrsold+"h "+minsold+" m "+seconds+"s ";
+    document.getElementById('days').innerHTML=""+daysold+"d "+hrsold+"h "+minsold+" m "+seconds+"s ";
 }
 function setzero(i) {
     if (i<10) {
