@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Google-Code-Style-C++</title>
+    <url>/2021/12/25/Google-Code-Style-C/C/</url>
+    <content><![CDATA[<blockquote>
+<p>some personal notes when reading google code style</p>
+</blockquote>
+<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><h2 id="self-contained头文件"><a href="#self-contained头文件" class="headerlink" title="self-contained头文件"></a>self-contained头文件</h2><blockquote>
+<p>头文件应该能够自给自足，self-contained，可以作为第一个头文件被引入   </p>
+</blockquote>
+<p>如果.h文件声明了一个模板或者内联函数，同时也在该文件加以定义<br>例外：如果某函数模板为所有相关模板函数显式实例化，或者本身是某个类的一个私有成员，那么就只能定义在实例化该模板的.cc文件</p>
+<span id="more"></span>
+
+<h2 id="define保护"><a href="#define保护" class="headerlink" title="define保护"></a>define保护</h2><blockquote>
+<p>所有头文件都应该使用#define来防止头文件被多重包含，格式：&lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_</p>
+</blockquote>
+<p>为保证唯一性，头文件的命名应该基于所在项目源代码树的全路径</p>
+<h2 id="前置声明"><a href="#前置声明" class="headerlink" title="前置声明"></a>前置声明</h2><blockquote>
+<p>尽可能地避免使用前置声明，使用#include 包含需要的头文件即可</p>
+</blockquote>
+<p>前置声明(forward declaraion)是类、函数和模板的纯粹声明，没有定义</p>
+<ul>
+<li>优点:节省编译时间，#include会使代码因为头文件中无关的改动重新编译多次</li>
+<li>缺点:<ul>
+<li>隐藏了依赖关系，头文件改动时，用户的代码会跳过必要的重新编译过程;</li>
+<li>可能会被库的后续更改破坏</li>
+<li>来自命名空间std::的symbol时，行为为定义</li>
+<li>很难判断什么时候该用前置声明，什么时候用#include</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reamdme</title>
+    <url>/2021/12/24/reamdme/MarkDown/</url>
+    <content><![CDATA[<blockquote>
+<p>record the steps of building personal blog using hexo on mac </p>
+</blockquote>
+<h1 id="prepare"><a href="#prepare" class="headerlink" title="prepare"></a>prepare</h1><h2 id="dependecies-list"><a href="#dependecies-list" class="headerlink" title="dependecies-list"></a>dependecies-list</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> git</li>
+<li><input checked="" disabled="" type="checkbox"> node.js</li>
+<li><input checked="" disabled="" type="checkbox"> npm</li>
+<li><input checked="" disabled="" type="checkbox"> hexo</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="hexo-common-use"><a href="#hexo-common-use" class="headerlink" title="hexo-common-use"></a>hexo-common-use</h2><ul>
+<li>hexo init [destination] 对指定目录初始化,创建hexo目录,destination须为空目录,为指定则为当前目录</li>
+<li>hexo new [docname] 新建文章</li>
+<li>hexo new page [pagename] 新建页面</li>
+</ul>
+<h1 id="building"><a href="#building" class="headerlink" title="building"></a>building</h1><h2 id="build-hexo"><a href="#build-hexo" class="headerlink" title="build-hexo"></a>build-hexo</h2><ul>
+<li>hexo初始化,这里建立blog目录: hexo init blog</li>
+<li>theme目录放置主题,可在github上下载</li>
+<li>新建文章:hexo new HelloWorld</li>
+<li>生成静态文件:hexo g</li>
+<li>生成静态文件后部署:hexo deploy</li>
+<li>启动本地服务器:hexo server, 默认情况下为<a href="http://localhost:4000/">http://localhost:4000</a></li>
+<li>使用新主题时清除缓存文件:hexo clean</li>
+</ul>
+<h2 id="deploy-to-github-pages"><a href="#deploy-to-github-pages" class="headerlink" title="deploy-to-github-pages"></a>deploy-to-github-pages</h2><ul>
+<li>设置生成github pages</li>
+<li>github常规配置:ssh等</li>
+<li>修改-config.yml,加入github.io信息</li>
+<li>安装plug: npm install hexo-deployer-git –save</li>
+<li>生成静态文件:hexo d -g</li>
+</ul>
+<h2 id="configuration-optimization"><a href="#configuration-optimization" class="headerlink" title="configuration-optimization"></a>configuration-optimization</h2><ul>
+<li>根据配置说明网页<a href="https://hexo.io/zh-cn/docs/configuration%E4%BF%AE%E6%94%B9/-config.yml%E6%96%87%E4%BB%B6">https://hexo.io/zh-cn/docs/configuration修改\-config.yml文件</a></li>
+<li>字数统计: npm install hexo-symbols-count-time –save<blockquote>
+<p>具体配置选项可参考: _config.yml, theme/next/\config.yml</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MarkDown</category>
+      </categories>
+      <tags>
+        <tag>MarkDown</tag>
+      </tags>
+  </entry>
+</search>
