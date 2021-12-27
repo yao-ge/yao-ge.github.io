@@ -22,15 +22,15 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yao-ge.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"dimmer":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="some personal notes when reading google code style  头文件self-contained头文件 头文件应该能够自给自足，self-contained，可以作为第一个头文件被引入     如果.h文件声明了一个模板或者内联函数，同时也在该文件加以定义例外：如果某函数模板为所有相关模板函数显式实例化，或者本身是某个类的一个私有成员，那么就只能定义在实">
+<meta name="description" content="some personal notes when reading google code style  头文件self-contained头文件 头文件应该能够自给自足,self-contained,可以作为第一个头文件被引入     如果.h文件声明了一个模板或者内联函数,同时也在该文件加以定义例外:如果某函数模板为所有相关模板函数显式实例化,或者本身是某个类的一个私有成员,那么就只能定义在实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google-Code-Style-C++">
 <meta property="og:url" content="https://yao-ge.github.io/2021/12/25/Google-Code-Style-C/C/index.html">
 <meta property="og:site_name" content="Cyberslacking space🦑">
-<meta property="og:description" content="some personal notes when reading google code style  头文件self-contained头文件 头文件应该能够自给自足，self-contained，可以作为第一个头文件被引入     如果.h文件声明了一个模板或者内联函数，同时也在该文件加以定义例外：如果某函数模板为所有相关模板函数显式实例化，或者本身是某个类的一个私有成员，那么就只能定义在实">
+<meta property="og:description" content="some personal notes when reading google code style  头文件self-contained头文件 头文件应该能够自给自足,self-contained,可以作为第一个头文件被引入     如果.h文件声明了一个模板或者内联函数,同时也在该文件加以定义例外:如果某函数模板为所有相关模板函数显式实例化,或者本身是某个类的一个私有成员,那么就只能定义在实">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-25T07:57:08.000Z">
-<meta property="article:modified_time" content="2021-12-26T01:48:42.010Z">
+<meta property="article:modified_time" content="2021-12-27T07:04:55.748Z">
 <meta property="article:author" content="yao-ge">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">头文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#self-contained%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">self-contained头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.2.</span> <span class="nav-text">define保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">前置声明</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">头文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#self-contained%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">self-contained头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.2.</span> <span class="nav-text">define保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">前置声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%81%8C%E8%B4%A3"><span class="nav-number">1.4.1.</span> <span class="nav-text">构造函数的职责</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -285,7 +285,7 @@ show_date_time();
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-26 09:48:42" itemprop="dateModified" datetime="2021-12-26T09:48:42+08:00">2021-12-26</time>
+      <time title="Modified: 2021-12-27 15:04:55" itemprop="dateModified" datetime="2021-12-27T15:04:55+08:00">2021-12-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,7 +304,7 @@ show_date_time();
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>526</span>
+      <span>589</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -326,29 +326,30 @@ show_date_time();
 <p>some personal notes when reading google code style</p>
 </blockquote>
 <h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><h2 id="self-contained头文件"><a href="#self-contained头文件" class="headerlink" title="self-contained头文件"></a>self-contained头文件</h2><blockquote>
-<p>头文件应该能够自给自足，self-contained，可以作为第一个头文件被引入   </p>
+<p>头文件应该能够自给自足,self-contained,可以作为第一个头文件被引入   </p>
 </blockquote>
-<p>如果.h文件声明了一个模板或者内联函数，同时也在该文件加以定义<br>例外：如果某函数模板为所有相关模板函数显式实例化，或者本身是某个类的一个私有成员，那么就只能定义在实例化该模板的.cc文件</p>
+<p>如果.h文件声明了一个模板或者内联函数,同时也在该文件加以定义<br>例外:如果某函数模板为所有相关模板函数显式实例化,或者本身是某个类的一个私有成员,那么就只能定义在实例化该模板的.cc文件</p>
 <span id="more"></span>
 
 <h2 id="define保护"><a href="#define保护" class="headerlink" title="define保护"></a>define保护</h2><blockquote>
-<p>所有头文件都应该使用#define来防止头文件被多重包含，格式：&lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_</p>
+<p>所有头文件都应该使用#define来防止头文件被多重包含,格式:&lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_</p>
 </blockquote>
-<p>为保证唯一性，头文件的命名应该基于所在项目源代码树的全路径</p>
+<p>为保证唯一性,头文件的命名应该基于所在项目源代码树的全路径</p>
 <h2 id="前置声明"><a href="#前置声明" class="headerlink" title="前置声明"></a>前置声明</h2><blockquote>
-<p>尽可能地避免使用前置声明，使用#include 包含需要的头文件即可</p>
+<p>尽可能地避免使用前置声明,使用#include 包含需要的头文件即可</p>
 </blockquote>
-<p>前置声明(forward declaraion)是类、函数和模板的纯粹声明，没有定义</p>
+<p>前置声明(forward declaraion)是类、函数和模板的纯粹声明,没有定义</p>
 <ul>
-<li>优点:节省编译时间，#include会使代码因为头文件中无关的改动重新编译多次</li>
+<li>优点:节省编译时间,#include会使代码因为头文件中无关的改动重新编译多次</li>
 <li>缺点:<ul>
-<li>隐藏了依赖关系，头文件改动时，用户的代码会跳过必要的重新编译过程;</li>
+<li>隐藏了依赖关系,头文件改动时,用户的代码会跳过必要的重新编译过程;</li>
 <li>可能会被库的后续更改破坏</li>
-<li>来自命名空间std::的symbol时，行为为定义</li>
-<li>很难判断什么时候该用前置声明，什么时候用#include</li>
+<li>来自命名空间std::的symbol时,行为为定义</li>
+<li>很难判断什么时候该用前置声明,什么时候用#include</li>
 </ul>
 </li>
 </ul>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="构造函数的职责"><a href="#构造函数的职责" class="headerlink" title="构造函数的职责"></a>构造函数的职责</h3><p>不要在构造函数中调用虚函数,也不要在无法报出错误时进行可能失败的初始化,简单来说,确保在构造函数的行为是确定的</p>
 
         <div>
         <div style="text-align:center;color:#555;font-size:14px;">-------------The End-------------</div>
