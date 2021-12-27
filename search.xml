@@ -108,7 +108,7 @@
 </ul>
 <h3 id="隐式类型转换-TODO"><a href="#隐式类型转换-TODO" class="headerlink" title="隐式类型转换[TODO]"></a>隐式类型转换[TODO]</h3><p>不定义隐式类型转换,对于转换运算符和单参数构造函数,使用explicit关键字<br>explicit关键字可以用于构造函数或类型转换运算符,以保证只有当目的类型在调用点被显式写明时才能进行类型转换<br>在类型定义中,类型转换运算符和单参数构造函数都应当用explicit进行标记<br>例外:拷贝和移动构造函数不应当被标记为explicit,因为它们不执行类型转换</p>
 <h3 id="可拷贝类型和可移动类型-TODO"><a href="#可拷贝类型和可移动类型-TODO" class="headerlink" title="可拷贝类型和可移动类型[TODO]"></a>可拷贝类型和可移动类型[TODO]</h3><h3 id="结构体-amp-类-TODO"><a href="#结构体-amp-类-TODO" class="headerlink" title="结构体&amp;类[TODO]"></a>结构体&amp;类[TODO]</h3><h3 id="类型命名"><a href="#类型命名" class="headerlink" title="类型命名"></a>类型命名</h3><p>类型名称的每个单词首字母均大写,不包含下划线<br>所有类型命名–类,结构体,类型定义,枚举,类型模板参数–均使用相同约定</p>
-<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>变量(包括函数参数)和数据成员名全部小写,单词之间用下划线连接,累的成员变量以下划线结尾,结构体不用</p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>变量(包括函数参数)和数据成员名全部小写,单词之间用下划线连接,类的成员变量以下划线结尾,结构体不用</p>
 ]]></content>
       <categories>
         <category>C++</category>
