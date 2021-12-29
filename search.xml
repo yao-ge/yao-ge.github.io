@@ -1,73 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Google-Code-Style-C++</title>
-    <url>/2021/12/25/Google-Code-Style-C/C/</url>
-    <content><![CDATA[<blockquote>
-<p>some personal notes when reading google code style</p>
-</blockquote>
-<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><h2 id="self-contained头文件"><a href="#self-contained头文件" class="headerlink" title="self-contained头文件"></a>self-contained头文件</h2><blockquote>
-<p>头文件应该能够自给自足,self-contained,可以作为第一个头文件被引入   </p>
-</blockquote>
-<p>如果.h文件声明了一个模板或者内联函数,同时也在该文件加以定义<br>例外:如果某函数模板为所有相关模板函数显式实例化,或者本身是某个类的一个私有成员,那么就只能定义在实例化该模板的.cc文件</p>
-<span id="more"></span>
-
-<h2 id="define保护"><a href="#define保护" class="headerlink" title="define保护"></a>define保护</h2><blockquote>
-<p>所有头文件都应该使用#define来防止头文件被多重包含,格式:&lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_</p>
-</blockquote>
-<p>为保证唯一性,头文件的命名应该基于所在项目源代码树的全路径</p>
-<h2 id="前置声明"><a href="#前置声明" class="headerlink" title="前置声明"></a>前置声明</h2><blockquote>
-<p>尽可能地避免使用前置声明,使用#include 包含需要的头文件即可</p>
-</blockquote>
-<p>前置声明(forward declaraion)是类、函数和模板的纯粹声明,没有定义</p>
-<ul>
-<li>优点<ul>
-<li>节省编译时间,#include会使代码因为头文件中无关的改动重新编译多次</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>隐藏了依赖关系,头文件改动时,用户的代码会跳过必要的重新编译过程;</li>
-<li>可能会被库的后续更改破坏</li>
-<li>来自命名空间std::的symbol时,行为为定义</li>
-<li>很难判断什么时候该用前置声明,什么时候用#include</li>
-</ul>
-</li>
-</ul>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="构造函数的职责"><a href="#构造函数的职责" class="headerlink" title="构造函数的职责"></a>构造函数的职责</h3><p>可以在构造函数中进行各种初始化操作,不要在构造函数中调用虚函数,也不要在无法报出错误时进行可能失败的初始化,简单来说,确保在构造函数的行为是确定的</p>
-<ul>
-<li><p>优点</p>
-<ul>
-<li>不需要考虑类是否被初始化</li>
-<li>经过构造函数初始化后的对象可以为const类型</li>
-</ul>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>构造函数中调用了自身的虚函数,不会重定向到子类的虚函数实现</li>
-<li>构造函数很难上报错误</li>
-<li>执行失败会得到一个初始化失败的对象,必须使用bool IsValid()机制检查</li>
-<li>构造函数的地址无法获取,由构造函数完成的工作是无法以简单的方式交给其他线程</li>
-</ul>
-</li>
-<li><p>结论</p>
-<ul>
-<li>构造函数不允许调用虚函数,或者尝试报告一个非致命错误</li>
-<li>可以考虑使用明确的Init()方法或者使用工厂模式</li>
-</ul>
-</li>
-</ul>
-<h3 id="隐式类型转换-TODO"><a href="#隐式类型转换-TODO" class="headerlink" title="隐式类型转换[TODO]"></a>隐式类型转换[TODO]</h3><p>不定义隐式类型转换,对于转换运算符和单参数构造函数,使用explicit关键字<br>explicit关键字可以用于构造函数或类型转换运算符,以保证只有当目的类型在调用点被显式写明时才能进行类型转换<br>在类型定义中,类型转换运算符和单参数构造函数都应当用explicit进行标记<br>例外:拷贝和移动构造函数不应当被标记为explicit,因为它们不执行类型转换</p>
-<h3 id="可拷贝类型和可移动类型-TODO"><a href="#可拷贝类型和可移动类型-TODO" class="headerlink" title="可拷贝类型和可移动类型[TODO]"></a>可拷贝类型和可移动类型[TODO]</h3><h3 id="结构体-amp-类-TODO"><a href="#结构体-amp-类-TODO" class="headerlink" title="结构体&amp;类[TODO]"></a>结构体&amp;类[TODO]</h3><h3 id="类型命名"><a href="#类型命名" class="headerlink" title="类型命名"></a>类型命名</h3><p>类型名称的每个单词首字母均大写,不包含下划线<br>所有类型命名–类,结构体,类型定义,枚举,类型模板参数–均使用相同约定</p>
-<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>变量(包括函数参数)和数据成员名全部小写,单词之间用下划线连接,类的成员变量以下划线结尾,结构体不用</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>README</title>
     <url>/2021/12/24/README/MarkDown/</url>
     <content><![CDATA[<blockquote>
@@ -115,6 +48,89 @@
       </categories>
       <tags>
         <tag>MarkDown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Google-Code-Style-C++</title>
+    <url>/2021/12/25/Google-Code-Style-C/C/</url>
+    <content><![CDATA[<blockquote>
+<p>some personal notes when reading google code style</p>
+</blockquote>
+<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><h2 id="self-contained头文件"><a href="#self-contained头文件" class="headerlink" title="self-contained头文件"></a>self-contained头文件</h2><blockquote>
+<p>头文件应该能够自给自足,self-contained,可以作为第一个头文件被引入   </p>
+</blockquote>
+<p>如果.h文件声明了一个模板或者内联函数,同时也在该文件加以定义<br>例外:如果某函数模板为所有相关模板函数显式实例化,或者本身是某个类的一个私有成员,那么就只能定义在实例化该模板的.cc文件</p>
+<span id="more"></span>
+
+<h2 id="define保护"><a href="#define保护" class="headerlink" title="define保护"></a>define保护</h2><blockquote>
+<p>所有头文件都应该使用#define来防止头文件被多重包含,格式:&lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_</p>
+</blockquote>
+<p>为保证唯一性,头文件的命名应该基于所在项目源代码树的全路径</p>
+<h2 id="前置声明"><a href="#前置声明" class="headerlink" title="前置声明"></a>前置声明</h2><blockquote>
+<p>尽可能地避免使用前置声明,使用#include 包含需要的头文件即可</p>
+</blockquote>
+<p>前置声明(forward declaraion)是类、函数和模板的纯粹声明,没有定义</p>
+<ul>
+<li>优点<ul>
+<li>节省编译时间,#include会使代码因为头文件中无关的改动重新编译多次</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>隐藏了依赖关系,头文件改动时,用户的代码会跳过必要的重新编译过程;</li>
+<li>可能会被库的后续更改破坏</li>
+<li>来自命名空间std::的symbol时,行为为定义</li>
+<li>很难判断什么时候该用前置声明,什么时候用#include</li>
+</ul>
+</li>
+</ul>
+<h2 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h2><blockquote>
+<p>只有当函数只有10行甚至更少时才将其定义为内联函数</p>
+</blockquote>
+<p>当函数被声明为内联函数之后,编译器会将其内联展开,而不是按照通常的函数调用机制进行调用</p>
+<ul>
+<li>经验准则<ul>
+<li>谨慎对待析构函数,析构函数往往比其表面看起来要更长,因为含有隐含的成员和基类析构函数被调用</li>
+<li>内联包含循环或者switch语句的函数往往得不偿失</li>
+<li>有些函数即使声明为内联也不一定会被编译器内联,比如虚函数和递归函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="include的路径和顺序"><a href="#include的路径和顺序" class="headerlink" title="#include的路径和顺序"></a>#include的路径和顺序</h2><blockquote>
+<p>使用标准头文件包含顺序可增强可读性,避免隐藏依赖</p>
+</blockquote>
+<p>依赖的符号（symbol）被哪些头文件定义，就应该包含这些头文件，前置声明情况除外<br>避免多重包含</p>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="构造函数的职责"><a href="#构造函数的职责" class="headerlink" title="构造函数的职责"></a>构造函数的职责</h2><p>可以在构造函数中进行各种初始化操作,不要在构造函数中调用虚函数,也不要在无法报出错误时进行可能失败的初始化,简单来说,确保在构造函数的行为是确定的</p>
+<ul>
+<li><p>优点</p>
+<ul>
+<li>不需要考虑类是否被初始化</li>
+<li>经过构造函数初始化后的对象可以为const类型</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>构造函数中调用了自身的虚函数,不会重定向到子类的虚函数实现</li>
+<li>构造函数很难上报错误</li>
+<li>执行失败会得到一个初始化失败的对象,必须使用bool IsValid()机制检查</li>
+<li>构造函数的地址无法获取,由构造函数完成的工作是无法以简单的方式交给其他线程</li>
+</ul>
+</li>
+<li><p>结论</p>
+<ul>
+<li>构造函数不允许调用虚函数,或者尝试报告一个非致命错误</li>
+<li>可以考虑使用明确的Init()方法或者使用工厂模式</li>
+</ul>
+</li>
+</ul>
+<h2 id="隐式类型转换-TODO"><a href="#隐式类型转换-TODO" class="headerlink" title="隐式类型转换[TODO]"></a>隐式类型转换[TODO]</h2><p>不定义隐式类型转换,对于转换运算符和单参数构造函数,使用explicit关键字<br>explicit关键字可以用于构造函数或类型转换运算符,以保证只有当目的类型在调用点被显式写明时才能进行类型转换<br>在类型定义中,类型转换运算符和单参数构造函数都应当用explicit进行标记<br>例外:拷贝和移动构造函数不应当被标记为explicit,因为它们不执行类型转换</p>
+<h2 id="可拷贝类型和可移动类型-TODO"><a href="#可拷贝类型和可移动类型-TODO" class="headerlink" title="可拷贝类型和可移动类型[TODO]"></a>可拷贝类型和可移动类型[TODO]</h2><h2 id="结构体-amp-类-TODO"><a href="#结构体-amp-类-TODO" class="headerlink" title="结构体&amp;类[TODO]"></a>结构体&amp;类[TODO]</h2><h2 id="类型命名"><a href="#类型命名" class="headerlink" title="类型命名"></a>类型命名</h2><p>类型名称的每个单词首字母均大写,不包含下划线<br>所有类型命名–类,结构体,类型定义,枚举,类型模板参数–均使用相同约定</p>
+<h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>变量(包括函数参数)和数据成员名全部小写,单词之间用下划线连接,类的成员变量以下划线结尾,结构体不用</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
