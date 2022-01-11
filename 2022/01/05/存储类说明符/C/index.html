@@ -22,26 +22,28 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yao-ge.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"dimmer":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Some scattered jottings when cyberslacking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyberslacking space🦑">
-<meta property="og:url" content="https://yao-ge.github.io/categories/vim/index.html">
+<meta name="description" content="什么是存储类说明符存储类说明符是一个名字的声明语法的声明说明符序列的一部分 它与名字的作用域一同控制名字的两个独立性质:存储期和链接  auto: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期 register: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期,提示优化器将此变量的值存储于CPU寄存器,已被C++11弃用 static: 只能搭配函数形参列表外的对象声">
+<meta property="og:type" content="article">
+<meta property="og:title" content="存储类说明符(Storage class specifiers)">
+<meta property="og:url" content="https://yao-ge.github.io/2022/01/05/%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6/C/index.html">
 <meta property="og:site_name" content="Cyberslacking space🦑">
-<meta property="og:description" content="Some scattered jottings when cyberslacking">
+<meta property="og:description" content="什么是存储类说明符存储类说明符是一个名字的声明语法的声明说明符序列的一部分 它与名字的作用域一同控制名字的两个独立性质:存储期和链接  auto: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期 register: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期,提示优化器将此变量的值存储于CPU寄存器,已被C++11弃用 static: 只能搭配函数形参列表外的对象声">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-05T13:55:02.000Z">
+<meta property="article:modified_time" content="2022-01-07T01:04:17.522Z">
 <meta property="article:author" content="yao-ge">
-<meta property="article:tag" content="code c++ linux system">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://yao-ge.github.io/categories/vim/">
+<link rel="canonical" href="https://yao-ge.github.io/2022/01/05/%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6/C/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"categories/vim/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://yao-ge.github.io/2022/01/05/%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6/C/","path":"2022/01/05/存储类说明符/C/","title":"存储类说明符(Storage class specifiers)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Category: vim | Cyberslacking space🦑</title>
+<title>存储类说明符(Storage class specifiers) | Cyberslacking space🦑</title>
   
 
 
@@ -135,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,6 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">什么是存储类说明符</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -253,50 +256,141 @@ show_date_time();
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">vim
-          <small>Category</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://yao-ge.github.io/2022/01/05/%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6/C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="yao-ge">
+      <meta itemprop="description" content="Some scattered jottings when cyberslacking">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyberslacking space🦑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          存储类说明符(Storage class specifiers)
         </h1>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2021 12</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-05 21:55:02" itemprop="dateCreated datePublished" datetime="2022-01-05T21:55:02+08:00">2022-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-07 09:04:17" itemprop="dateModified" datetime="2022-01-07T09:04:17+08:00">2022-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>345</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="什么是存储类说明符"><a href="#什么是存储类说明符" class="headerlink" title="什么是存储类说明符"></a>什么是存储类说明符</h1><p>存储类说明符是一个名字的声明语法的声明说明符序列的一部分</p>
+<p>它与名字的作用域一同控制名字的两个独立性质:存储期和链接</p>
+<ul>
+<li>auto: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期</li>
+<li>register: 只能搭配声明于块作用域或函数形参列表中的对象,指示自动存储期,提示优化器将此变量的值存储于CPU寄存器,已被C++11弃用</li>
+<li>static: 只能搭配函数形参列表外的对象声明、块作用域外的函数声明及匿名联合体声明.当用于声明类成员时,它会声明一个静态成员.当用于声明对象时,它指定静态存储期,除非与thread_local协同出现.</li>
+<li>extern</li>
+<li>thread_local</li>
+<li>mutable</li>
+</ul>
+<blockquote>
+<p>声明中只可以出现一个存储类说明符,但thread_local可以与static或extern结合</p>
+</blockquote>
+
+        <div>
+        <div style="text-align:center;color:#555;font-size:14px;">-------------The End-------------</div>
+</div>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-12-29T11:10:55+08:00"
-              content="2021-12-29">
-          12-29
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/29/vim-configure/vim/" itemprop="url">
-            <span itemprop="name">vim configure</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
 
-      
-    </header>
-  </article>
-
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
     </div>
   </div>
-  
-  
-  
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/29/vim-configure/vim/" rel="prev" title="vim configure">
+                  <i class="fa fa-chevron-left"></i> vim configure
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/11/multipass-research/Ubuntu/" rel="next" title="multipass research">
+                  multipass research <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 </div>
   </main>
