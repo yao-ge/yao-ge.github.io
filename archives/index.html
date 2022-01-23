@@ -164,12 +164,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -225,7 +225,7 @@ show_date_time();
             <div class="widget-wrap">
                 <div id="myCanvasContainer" class="widget tagcloud">
                 <canvas width="220" height="250" id="resCanvas" style="width=100%">
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown/" rel="tag">MarkDown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu-virtual/" rel="tag">Ubuntu virtual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a><span class="tag-list-count">1</span></li></ul>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown/" rel="tag">MarkDown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multipass/" rel="tag">multipass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/squid/" rel="tag">squid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtual/" rel="tag">virtual</a><span class="tag-list-count">1</span></li></ul>
                 </canvas>
                 </div>
             </div>
@@ -263,6 +263,138 @@ show_date_time();
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="yao-ge">
+      <meta itemprop="description" content="Some scattered jottings when cyberslacking">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyberslacking space🦑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/23/squid/network/virtual-machine/" class="post-title-link" itemprop="url">使用multipass + squid代理访问公司内网</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-01-23 19:58:21 / Modified: 21:09:44" itemprop="dateCreated datePublished" datetime="2022-01-23T19:58:21+08:00">2022-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/network/" itemprop="url" rel="index"><span itemprop="name">network</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/network/virtual-machine/" itemprop="url" rel="index"><span itemprop="name">virtual machine</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
+<p>为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为</p>
+<p>需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机访问公司内网,这样就能做到可控的在openvpn下暴露指定的行为(dddd)</p>
+<h1 id="设备及环境"><a href="#设备及环境" class="headerlink" title="设备及环境"></a>设备及环境</h1><p>公司办公设备mac<br>访问公司内网openvpn<br>虚拟机管理器multipass</p>
+<blockquote>
+<p>为什么选择multipass,因为docker太耗电</p>
+</blockquote>
+<p>虚拟机内正向代理squid</p>
+<blockquote>
+<p>为什么选择squid,因为nginx太麻烦</p>
+</blockquote>
+<p>浏览器firefox</p>
+<blockquote>
+<p>为什么选择firefox,因为可以设置代理地址</p>
+</blockquote>
+<blockquote>
+<p>这样就可以通过firefox+multipass+squid+openvpn访问公司内网,但是其他浏览器比如Safari就不会经过公司内网(很好),并且开发工作直接在虚机中进行即可</p>
+</blockquote>
+<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h2><p>multipass是由Ubuntu运营公司Canonical退出的开源项目,可以用来创建和管理虚拟机,可以部署在Linux、macOS、Windows操作系统上,目前看起来虚拟机只支持ubuntu,还不支持centos</p>
+<h3 id="安装步骤-https-multipass-run"><a href="#安装步骤-https-multipass-run" class="headerlink" title="安装步骤(https://multipass.run)"></a>安装步骤(<a target="_blank" rel="noopener" href="https://multipass.run/">https://multipass.run</a>)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install multipass</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找当前可支持的镜像"><a href="#查找当前可支持的镜像" class="headerlink" title="查找当前可支持的镜像"></a>查找当前可支持的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass find</span><br></pre></td></tr></table></figure>
+<p><img src="/images/multipass_find.png" alt="multipass find"></p>
+<h3 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h3><blockquote>
+<p>multipass引入了实例(instance)来替代了docker中容器(container)的概念</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">multipass launch -n workspace -c 4 -d 30G -m 4G 21.10 </span><br><span class="line"><span class="comment"># launch 创建和启动一个ubuntu实例</span></span><br><span class="line"><span class="comment"># -n 指定实例名字</span></span><br><span class="line"><span class="comment"># -c 指定cpu个数</span></span><br><span class="line"><span class="comment"># -d 指定磁盘大小</span></span><br><span class="line"><span class="comment"># -m 指定内存大小</span></span><br><span class="line"><span class="comment"># 21.10 指定Ubuntu版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入实例并配置相关环境"><a href="#进入实例并配置相关环境" class="headerlink" title="进入实例并配置相关环境"></a>进入实例并配置相关环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass sh workspace</span><br></pre></td></tr></table></figure>
+
+<p>配置ip转发：在/etc/sysctl.conf中将net.ipv4.ip_forward设置为1并取消注释，执行sysctl -p下注配置</p>
+<h2 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h2><blockquote>
+<p>在ubuntu虚机中安装squid来实现正向代理</p>
+</blockquote>
+<h3 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install squid -y</span><br></pre></td></tr></table></figure>
+
+<p>修改squid配置：在/etc/squid/squid.conf将http_access deny all修改为http_access allow all<br>然后重启squid： systemctl restart squid</p>
+<h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>firefox中配置http和https代理，代理地址可通过multpass ls查看到，一般为192.168.64.*，端口squid默认为3128</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://yao-ge.github.io/2022/01/11/multipass-research/Ubuntu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -288,7 +420,7 @@ show_date_time();
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-11 22:34:38 / Modified: 23:01:49" itemprop="dateCreated datePublished" datetime="2022-01-11T22:34:38+08:00">2022-01-11</time>
+      <time title="Created: 2022-01-11 22:34:38 / Modified: 23:02:57" itemprop="dateCreated datePublished" datetime="2022-01-11T22:34:38+08:00">2022-01-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -586,7 +718,7 @@ show_date_time();
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-01-05 22:03:09" itemprop="dateModified" datetime="2022-01-05T22:03:09+08:00">2022-01-05</time>
+      <time title="Modified: 2022-01-21 20:18:24" itemprop="dateModified" datetime="2022-01-21T20:18:24+08:00">2022-01-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -605,14 +737,14 @@ show_date_time();
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.5k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -789,13 +921,13 @@ show_date_time();
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">24k</span>
+    <span title="Symbols count total">26k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">22 mins.</span>
+    <span title="Reading time total">24 mins.</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>

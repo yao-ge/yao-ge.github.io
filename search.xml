@@ -1,68 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>README</title>
-    <url>/2021/12/24/README/MarkDown/</url>
-    <content><![CDATA[<blockquote>
-<p>record the steps of building personal blog using hexo on mac </p>
-</blockquote>
-<h1 id="prepare"><a href="#prepare" class="headerlink" title="prepare"></a>prepare</h1><h2 id="dependecies-list"><a href="#dependecies-list" class="headerlink" title="dependecies-list"></a>dependecies-list</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> git</li>
-<li><input checked="" disabled="" type="checkbox"> node.js</li>
-<li><input checked="" disabled="" type="checkbox"> npm</li>
-<li><input checked="" disabled="" type="checkbox"> hexo</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="hexo-common-use"><a href="#hexo-common-use" class="headerlink" title="hexo-common-use"></a>hexo-common-use</h2><ul>
-<li>hexo init [destination] 对指定目录初始化,创建hexo目录,destination须为空目录,为指定则为当前目录</li>
-<li>hexo new [docname] 新建文章</li>
-<li>hexo new page [pagename] 新建页面</li>
-</ul>
-<h1 id="building"><a href="#building" class="headerlink" title="building"></a>building</h1><h2 id="build-hexo"><a href="#build-hexo" class="headerlink" title="build-hexo"></a>build-hexo</h2><ul>
-<li>hexo初始化,这里建立blog目录: hexo init blog</li>
-<li>theme目录放置主题,可在github上下载</li>
-<li>新建文章:hexo new HelloWorld</li>
-<li>生成静态文件:hexo g</li>
-<li>生成静态文件后部署:hexo deploy</li>
-<li>启动本地服务器:hexo server, 默认情况下为<a href="http://localhost:4000/">http://localhost:4000</a></li>
-<li>使用新主题时清除缓存文件:hexo clean</li>
-</ul>
-<h2 id="deploy-to-github-pages"><a href="#deploy-to-github-pages" class="headerlink" title="deploy-to-github-pages"></a>deploy-to-github-pages</h2><ul>
-<li>设置生成github pages</li>
-<li>github常规配置:ssh等</li>
-<li>修改-config.yml,加入github.io信息</li>
-<li>安装plug: npm install hexo-deployer-git –save</li>
-<li>生成静态文件:hexo d -g</li>
-</ul>
-<h2 id="configuration-optimization"><a href="#configuration-optimization" class="headerlink" title="configuration-optimization"></a>configuration-optimization</h2><ul>
-<li>根据配置说明网页<a href="https://hexo.io/zh-cn/docs/configuration%E4%BF%AE%E6%94%B9/-config.yml%E6%96%87%E4%BB%B6">https://hexo.io/zh-cn/docs/configuration修改\-config.yml文件</a></li>
-<li>字数统计: npm install hexo-symbols-count-time –save<blockquote>
-<p>具体配置选项可参考: _config.yml, theme/next/\config.yml</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>MarkDown</category>
-      </categories>
-      <tags>
-        <tag>MarkDown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>multipass research</title>
-    <url>/2022/01/11/multipass-research/Ubuntu/</url>
-    <content><![CDATA[<h1 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h1><p>this is a blog about multipass</p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu virtual</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Google-Code-Style-C++</title>
     <url>/2021/12/25/Google-Code-Style-C/C/</url>
     <content><![CDATA[<blockquote>
@@ -186,8 +124,45 @@
 </ul>
 </li>
 </ul>
-<h2 id="隐式类型转换-TODO"><a href="#隐式类型转换-TODO" class="headerlink" title="隐式类型转换[TODO]"></a>隐式类型转换[TODO]</h2><p>不定义隐式类型转换,对于转换运算符和单参数构造函数,使用explicit关键字<br>explicit关键字可以用于构造函数或类型转换运算符,以保证只有当目的类型在调用点被显式写明时才能进行类型转换<br>在类型定义中,类型转换运算符和单参数构造函数都应当用explicit进行标记<br>例外:拷贝和移动构造函数不应当被标记为explicit,因为它们不执行类型转换</p>
-<h2 id="可拷贝类型和可移动类型-TODO"><a href="#可拷贝类型和可移动类型-TODO" class="headerlink" title="可拷贝类型和可移动类型[TODO]"></a>可拷贝类型和可移动类型[TODO]</h2><h2 id="结构体-amp-类-TODO"><a href="#结构体-amp-类-TODO" class="headerlink" title="结构体&amp;类[TODO]"></a>结构体&amp;类[TODO]</h2><h2 id="类型命名"><a href="#类型命名" class="headerlink" title="类型命名"></a>类型命名</h2><p>类型名称的每个单词首字母均大写,不包含下划线<br>所有类型命名–类,结构体,类型定义,枚举,类型模板参数–均使用相同约定</p>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>不定义隐式类型转换,对于转换运算符和单参数构造函数,使用explicit关键字<br>explicit关键字可以用于构造函数或类型转换运算符,以保证只有当目的类型在调用点被显式写明时才能进行类型转换<br>在类型定义中,类型转换运算符和单参数构造函数都应当用explicit进行标记<br>例外:拷贝和移动构造函数不应当被标记为explicit,因为它们不执行类型转换</p>
+<h2 id="可拷贝类型和可移动类型"><a href="#可拷贝类型和可移动类型" class="headerlink" title="可拷贝类型和可移动类型"></a>可拷贝类型和可移动类型</h2><p>可拷贝类型允许对象在初始化时得到来自相同类型的另一对象的值, 或在赋值时被赋予相同类型的另一 对象的值, 同时不改变源对象的值.</p>
+<h2 id="结构体-amp-类"><a href="#结构体-amp-类" class="headerlink" title="结构体&amp;类"></a>结构体&amp;类</h2><p>仅当只有数据成员时使用struct, 其它一概使用class</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><blockquote>
+<p>使用组合比使用继承更合理</p>
+</blockquote>
+<p>子类继承基类时会包含所有数据及操作的定义<br>使用继承的两种场合:</p>
+<ul>
+<li>子类继承父类的实现代码</li>
+<li>子类继承父类的方法名称</li>
+</ul>
+<p>尽量在”是”的关系下使用继承</p>
+<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><blockquote>
+<p>只在以下情况才推荐使用多重继承:最多只有一个基类是非抽象类</p>
+</blockquote>
+<p>只有当所有父类除第一个外都是纯接口时,才允许使用多重继承</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><blockquote>
+<p>接口是指满足特定条件的类,以Interface为后缀</p>
+</blockquote>
+<p>当一个类满足以下要求时, 称之为纯接口:</p>
+<ul>
+<li>只有纯虚函数(“=0”)和静态函数(除了下文提到的析构函数)</li>
+<li>没有非静态数据成员</li>
+<li>没有定义任何构造函数. 如果有, 也不能带有参数, 并且必须为protected</li>
+<li>如果它是一个子类, 也只能从满足上述条件并以 Interface 为后缀的类继承</li>
+</ul>
+<h2 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h2><blockquote>
+<p>除少数特定环境外,不要重载运算符,也不要创建用户定义字面量</p>
+</blockquote>
+<h2 id="存取控制"><a href="#存取控制" class="headerlink" title="存取控制"></a>存取控制</h2><blockquote>
+<p>将所有数据成员声明为private,除非是static const类型成员</p>
+</blockquote>
+<h2 id="声明顺序"><a href="#声明顺序" class="headerlink" title="声明顺序"></a>声明顺序</h2><blockquote>
+<p>将相似的声明放在仪器,将public部分放在最前</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="参数顺序"><a href="#参数顺序" class="headerlink" title="参数顺序"></a>参数顺序</h2><blockquote>
+<p>输入参数在前,输出参数在后</p>
+</blockquote>
+<h2 id="类型命名"><a href="#类型命名" class="headerlink" title="类型命名"></a>类型命名</h2><p>类型名称的每个单词首字母均大写,不包含下划线<br>所有类型命名–类,结构体,类型定义,枚举,类型模板参数–均使用相同约定</p>
 <h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>变量(包括函数参数)和数据成员名全部小写,单词之间用下划线连接,类的成员变量以下划线结尾,结构体不用</p>
 ]]></content>
       <categories>
@@ -195,6 +170,69 @@
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>README</title>
+    <url>/2021/12/24/README/MarkDown/</url>
+    <content><![CDATA[<blockquote>
+<p>record the steps of building personal blog using hexo on mac </p>
+</blockquote>
+<h1 id="prepare"><a href="#prepare" class="headerlink" title="prepare"></a>prepare</h1><h2 id="dependecies-list"><a href="#dependecies-list" class="headerlink" title="dependecies-list"></a>dependecies-list</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> git</li>
+<li><input checked="" disabled="" type="checkbox"> node.js</li>
+<li><input checked="" disabled="" type="checkbox"> npm</li>
+<li><input checked="" disabled="" type="checkbox"> hexo</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="hexo-common-use"><a href="#hexo-common-use" class="headerlink" title="hexo-common-use"></a>hexo-common-use</h2><ul>
+<li>hexo init [destination] 对指定目录初始化,创建hexo目录,destination须为空目录,为指定则为当前目录</li>
+<li>hexo new [docname] 新建文章</li>
+<li>hexo new page [pagename] 新建页面</li>
+</ul>
+<h1 id="building"><a href="#building" class="headerlink" title="building"></a>building</h1><h2 id="build-hexo"><a href="#build-hexo" class="headerlink" title="build-hexo"></a>build-hexo</h2><ul>
+<li>hexo初始化,这里建立blog目录: hexo init blog</li>
+<li>theme目录放置主题,可在github上下载</li>
+<li>新建文章:hexo new HelloWorld</li>
+<li>生成静态文件:hexo g</li>
+<li>生成静态文件后部署:hexo deploy</li>
+<li>启动本地服务器:hexo server, 默认情况下为<a href="http://localhost:4000/">http://localhost:4000</a></li>
+<li>使用新主题时清除缓存文件:hexo clean</li>
+</ul>
+<h2 id="deploy-to-github-pages"><a href="#deploy-to-github-pages" class="headerlink" title="deploy-to-github-pages"></a>deploy-to-github-pages</h2><ul>
+<li>设置生成github pages</li>
+<li>github常规配置:ssh等</li>
+<li>修改-config.yml,加入github.io信息</li>
+<li>安装plug: npm install hexo-deployer-git –save</li>
+<li>生成静态文件:hexo d -g</li>
+</ul>
+<h2 id="configuration-optimization"><a href="#configuration-optimization" class="headerlink" title="configuration-optimization"></a>configuration-optimization</h2><ul>
+<li>根据配置说明网页<a href="https://hexo.io/zh-cn/docs/configuration%E4%BF%AE%E6%94%B9/-config.yml%E6%96%87%E4%BB%B6">https://hexo.io/zh-cn/docs/configuration修改\-config.yml文件</a></li>
+<li>字数统计: npm install hexo-symbols-count-time –save<blockquote>
+<p>具体配置选项可参考: _config.yml, theme/next/\config.yml</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MarkDown</category>
+      </categories>
+      <tags>
+        <tag>MarkDown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>multipass research</title>
+    <url>/2022/01/11/multipass-research/Ubuntu/</url>
+    <content><![CDATA[<h1 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h1><p>this is a blog about multipass</p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>virtual</tag>
       </tags>
   </entry>
   <entry>
@@ -219,6 +257,60 @@
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用multipass + squid代理访问公司内网</title>
+    <url>/2022/01/23/squid/network/virtual-machine/</url>
+    <content><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
+<p>为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为</p>
+<p>需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机访问公司内网,这样就能做到可控的在openvpn下暴露指定的行为(dddd)</p>
+<h1 id="设备及环境"><a href="#设备及环境" class="headerlink" title="设备及环境"></a>设备及环境</h1><p>公司办公设备mac<br>访问公司内网openvpn<br>虚拟机管理器multipass</p>
+<blockquote>
+<p>为什么选择multipass,因为docker太耗电</p>
+</blockquote>
+<p>虚拟机内正向代理squid</p>
+<blockquote>
+<p>为什么选择squid,因为nginx太麻烦</p>
+</blockquote>
+<p>浏览器firefox</p>
+<blockquote>
+<p>为什么选择firefox,因为可以设置代理地址</p>
+</blockquote>
+<blockquote>
+<p>这样就可以通过firefox+multipass+squid+openvpn访问公司内网,但是其他浏览器比如Safari就不会经过公司内网(很好),并且开发工作直接在虚机中进行即可</p>
+</blockquote>
+<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h2><p>multipass是由Ubuntu运营公司Canonical退出的开源项目,可以用来创建和管理虚拟机,可以部署在Linux、macOS、Windows操作系统上,目前看起来虚拟机只支持ubuntu,还不支持centos</p>
+<h3 id="安装步骤-https-multipass-run"><a href="#安装步骤-https-multipass-run" class="headerlink" title="安装步骤(https://multipass.run)"></a>安装步骤(<a href="https://multipass.run/">https://multipass.run</a>)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install multipass</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找当前可支持的镜像"><a href="#查找当前可支持的镜像" class="headerlink" title="查找当前可支持的镜像"></a>查找当前可支持的镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">multipass find</span><br></pre></td></tr></table></figure>
+<p><img src="/images/multipass_find.png" alt="multipass find"></p>
+<h3 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h3><blockquote>
+<p>multipass引入了实例(instance)来替代了docker中容器(container)的概念</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">multipass launch -n workspace -c 4 -d 30G -m 4G 21.10 </span><br><span class="line"><span class="comment"># launch 创建和启动一个ubuntu实例</span></span><br><span class="line"><span class="comment"># -n 指定实例名字</span></span><br><span class="line"><span class="comment"># -c 指定cpu个数</span></span><br><span class="line"><span class="comment"># -d 指定磁盘大小</span></span><br><span class="line"><span class="comment"># -m 指定内存大小</span></span><br><span class="line"><span class="comment"># 21.10 指定Ubuntu版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">multipass ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入实例并配置相关环境"><a href="#进入实例并配置相关环境" class="headerlink" title="进入实例并配置相关环境"></a>进入实例并配置相关环境</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">multipass sh workspace</span><br></pre></td></tr></table></figure>
+
+<p>配置ip转发：在/etc/sysctl.conf中将net.ipv4.ip_forward设置为1并取消注释，执行sysctl -p下注配置</p>
+<h2 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h2><blockquote>
+<p>在ubuntu虚机中安装squid来实现正向代理</p>
+</blockquote>
+<h3 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install squid -y</span><br></pre></td></tr></table></figure>
+
+<p>修改squid配置：在/etc/squid/squid.conf将http_access deny all修改为http_access allow all<br>然后重启squid： systemctl restart squid</p>
+<h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>firefox中配置http和https代理，代理地址可通过multpass ls查看到，一般为192.168.64.*，端口squid默认为3128</p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>virtual machine</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>squid</tag>
+        <tag>multipass</tag>
       </tags>
   </entry>
   <entry>

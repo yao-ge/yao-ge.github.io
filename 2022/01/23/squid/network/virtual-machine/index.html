@@ -22,26 +22,32 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yao-ge.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"dimmer":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Some scattered jottings when cyberslacking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyberslacking space🦑">
-<meta property="og:url" content="https://yao-ge.github.io/2022/01/index.html">
+<meta name="description" content="需求在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用multipass + squid代理访问公司内网">
+<meta property="og:url" content="https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/index.html">
 <meta property="og:site_name" content="Cyberslacking space🦑">
-<meta property="og:description" content="Some scattered jottings when cyberslacking">
+<meta property="og:description" content="需求在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yao-ge.github.io/images/multipass_find.png">
+<meta property="article:published_time" content="2022-01-23T11:58:21.000Z">
+<meta property="article:modified_time" content="2022-01-23T13:09:44.415Z">
 <meta property="article:author" content="yao-ge">
-<meta property="article:tag" content="code c++ linux system">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="squid">
+<meta property="article:tag" content="multipass">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yao-ge.github.io/images/multipass_find.png">
 
 
-<link rel="canonical" href="https://yao-ge.github.io/2022/01/">
+<link rel="canonical" href="https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"2022/01/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/","path":"2022/01/23/squid/network/virtual-machine/","title":"使用multipass + squid代理访问公司内网"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | Cyberslacking space🦑</title>
+<title>使用multipass + squid代理访问公司内网 | Cyberslacking space🦑</title>
   
 
 
@@ -70,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Cyberslacking space🦑</h1>
+      <p class="site-title">Cyberslacking space🦑</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Hey There👨‍💻</p>
@@ -135,7 +141,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,6 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%8F%8A%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">设备及环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#multipass"><span class="nav-number">3.1.</span> <span class="nav-text">multipass</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4-https-multipass-run"><span class="nav-number">3.1.1.</span> <span class="nav-text">安装步骤(https:&#x2F;&#x2F;multipass.run)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%BD%93%E5%89%8D%E5%8F%AF%E6%94%AF%E6%8C%81%E7%9A%84%E9%95%9C%E5%83%8F"><span class="nav-number">3.1.2.</span> <span class="nav-text">查找当前可支持的镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.1.3.</span> <span class="nav-text">启动实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B"><span class="nav-number">3.1.4.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%9E%E4%BE%8B%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83"><span class="nav-number">3.1.5.</span> <span class="nav-text">进入实例并配置相关环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#squid"><span class="nav-number">3.2.</span> <span class="nav-text">squid</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.1.</span> <span class="nav-text">安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firefox"><span class="nav-number">3.3.</span> <span class="nav-text">firefox</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -253,90 +260,165 @@ show_date_time();
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        
-        <span class="collection-header">Nice! 6 posts in total. Keep on posting.</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="yao-ge">
+      <meta itemprop="description" content="Some scattered jottings when cyberslacking">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyberslacking space🦑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用multipass + squid代理访问公司内网
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022 01</span>
+
+      <time title="Created: 2022-01-23 19:58:21 / Modified: 21:09:44" itemprop="dateCreated datePublished" datetime="2022-01-23T19:58:21+08:00">2022-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/network/" itemprop="url" rel="index"><span itemprop="name">network</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/network/virtual-machine/" itemprop="url" rel="index"><span itemprop="name">virtual machine</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
+<p>为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为</p>
+<p>需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机访问公司内网,这样就能做到可控的在openvpn下暴露指定的行为(dddd)</p>
+<h1 id="设备及环境"><a href="#设备及环境" class="headerlink" title="设备及环境"></a>设备及环境</h1><p>公司办公设备mac<br>访问公司内网openvpn<br>虚拟机管理器multipass</p>
+<blockquote>
+<p>为什么选择multipass,因为docker太耗电</p>
+</blockquote>
+<p>虚拟机内正向代理squid</p>
+<blockquote>
+<p>为什么选择squid,因为nginx太麻烦</p>
+</blockquote>
+<p>浏览器firefox</p>
+<blockquote>
+<p>为什么选择firefox,因为可以设置代理地址</p>
+</blockquote>
+<blockquote>
+<p>这样就可以通过firefox+multipass+squid+openvpn访问公司内网,但是其他浏览器比如Safari就不会经过公司内网(很好),并且开发工作直接在虚机中进行即可</p>
+</blockquote>
+<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h2><p>multipass是由Ubuntu运营公司Canonical退出的开源项目,可以用来创建和管理虚拟机,可以部署在Linux、macOS、Windows操作系统上,目前看起来虚拟机只支持ubuntu,还不支持centos</p>
+<h3 id="安装步骤-https-multipass-run"><a href="#安装步骤-https-multipass-run" class="headerlink" title="安装步骤(https://multipass.run)"></a>安装步骤(<a target="_blank" rel="noopener" href="https://multipass.run/">https://multipass.run</a>)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install multipass</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找当前可支持的镜像"><a href="#查找当前可支持的镜像" class="headerlink" title="查找当前可支持的镜像"></a>查找当前可支持的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass find</span><br></pre></td></tr></table></figure>
+<p><img src="/images/multipass_find.png" alt="multipass find"></p>
+<h3 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h3><blockquote>
+<p>multipass引入了实例(instance)来替代了docker中容器(container)的概念</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">multipass launch -n workspace -c 4 -d 30G -m 4G 21.10 </span><br><span class="line"><span class="comment"># launch 创建和启动一个ubuntu实例</span></span><br><span class="line"><span class="comment"># -n 指定实例名字</span></span><br><span class="line"><span class="comment"># -c 指定cpu个数</span></span><br><span class="line"><span class="comment"># -d 指定磁盘大小</span></span><br><span class="line"><span class="comment"># -m 指定内存大小</span></span><br><span class="line"><span class="comment"># 21.10 指定Ubuntu版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入实例并配置相关环境"><a href="#进入实例并配置相关环境" class="headerlink" title="进入实例并配置相关环境"></a>进入实例并配置相关环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass sh workspace</span><br></pre></td></tr></table></figure>
+
+<p>配置ip转发：在/etc/sysctl.conf中将net.ipv4.ip_forward设置为1并取消注释，执行sysctl -p下注配置</p>
+<h2 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h2><blockquote>
+<p>在ubuntu虚机中安装squid来实现正向代理</p>
+</blockquote>
+<h3 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install squid -y</span><br></pre></td></tr></table></figure>
+
+<p>修改squid配置：在/etc/squid/squid.conf将http_access deny all修改为http_access allow all<br>然后重启squid： systemctl restart squid</p>
+<h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>firefox中配置http和https代理，代理地址可通过multpass ls查看到，一般为192.168.64.*，端口squid默认为3128</p>
+
+        <div>
+        <div style="text-align:center;color:#555;font-size:14px;">-------------The End-------------</div>
+</div>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-01-23T19:58:21+08:00"
-              content="2022-01-23">
-          01-23
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/01/23/squid/network/virtual-machine/" itemprop="url">
-            <span itemprop="name">使用multipass + squid代理访问公司内网</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/network/" rel="tag"># network</a>
+              <a href="/tags/squid/" rel="tag"># squid</a>
+              <a href="/tags/multipass/" rel="tag"># multipass</a>
+          </div>
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-01-11T22:34:38+08:00"
-              content="2022-01-11">
-          01-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/01/11/multipass-research/Ubuntu/" itemprop="url">
-            <span itemprop="name">multipass research</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-01-05T21:55:02+08:00"
-              content="2022-01-05">
-          01-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/01/05/%E5%AD%98%E5%82%A8%E7%B1%BB%E8%AF%B4%E6%98%8E%E7%AC%A6/C/" itemprop="url">
-            <span itemprop="name">存储类说明符(Storage class specifiers)</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
     </div>
   </div>
-  
-  
-  
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/11/multipass-research/Ubuntu/" rel="prev" title="multipass research">
+                  <i class="fa fa-chevron-left"></i> multipass research
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 </div>
   </main>
