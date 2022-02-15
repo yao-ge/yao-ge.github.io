@@ -22,16 +22,16 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yao-ge.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"dimmer":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="需求在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
+<meta name="description" content="需求在办公设备上,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用multipass + squid代理访问公司内网">
 <meta property="og:url" content="https://yao-ge.github.io/2022/01/23/squid/network/virtual-machine/index.html">
 <meta property="og:site_name" content="Cyberslacking space🦑">
-<meta property="og:description" content="需求在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
+<meta property="og:description" content="需求在办公设备上,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网 为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为 需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://yao-ge.github.io/images/multipass_find.png">
 <meta property="article:published_time" content="2022-01-23T11:58:21.000Z">
-<meta property="article:modified_time" content="2022-01-23T13:09:44.415Z">
+<meta property="article:modified_time" content="2022-01-24T06:53:05.625Z">
 <meta property="article:author" content="yao-ge">
 <meta property="article:tag" content="network">
 <meta property="article:tag" content="squid">
@@ -294,9 +294,15 @@ show_date_time();
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-01-23 19:58:21 / Modified: 21:09:44" itemprop="dateCreated datePublished" datetime="2022-01-23T19:58:21+08:00">2022-01-23</time>
+      <time title="Created: 2022-01-23 19:58:21" itemprop="dateCreated datePublished" datetime="2022-01-23T19:58:21+08:00">2022-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-24 14:53:05" itemprop="dateModified" datetime="2022-01-24T14:53:05+08:00">2022-01-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -337,9 +343,11 @@ show_date_time();
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备商,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备上,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
 <p>为更好的保护个人隐私,意欲在一个隔离的环境通过openvpn访问公司内网,并且在访问google、baidu等网站(🦑)时不被公司vpn记录行为</p>
 <p>需要摸索出一套环境,宿主机+虚拟机(openvpn),虚拟机中能够直接通过公司vpn访问公司内网,但是宿主机不能访问公司内网,通过设置代理地址,也能使得宿主机访问公司内网,这样就能做到可控的在openvpn下暴露指定的行为(dddd)</p>
+<span id="more"></span>
+
 <h1 id="设备及环境"><a href="#设备及环境" class="headerlink" title="设备及环境"></a>设备及环境</h1><p>公司办公设备mac<br>访问公司内网openvpn<br>虚拟机管理器multipass</p>
 <blockquote>
 <p>为什么选择multipass,因为docker太耗电</p>
@@ -355,13 +363,13 @@ show_date_time();
 <blockquote>
 <p>这样就可以通过firefox+multipass+squid+openvpn访问公司内网,但是其他浏览器比如Safari就不会经过公司内网(很好),并且开发工作直接在虚机中进行即可</p>
 </blockquote>
-<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h2><p>multipass是由Ubuntu运营公司Canonical退出的开源项目,可以用来创建和管理虚拟机,可以部署在Linux、macOS、Windows操作系统上,目前看起来虚拟机只支持ubuntu,还不支持centos</p>
+<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h2><p>multipass是由Ubuntu运营公司Canonical推出的开源项目,用来创建和管理虚拟机,可以部署在Linux、macOS、Windows操作系统上,目前看起来虚拟机只支持ubuntu,不支持centos</p>
 <h3 id="安装步骤-https-multipass-run"><a href="#安装步骤-https-multipass-run" class="headerlink" title="安装步骤(https://multipass.run)"></a>安装步骤(<a target="_blank" rel="noopener" href="https://multipass.run/">https://multipass.run</a>)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install multipass</span><br></pre></td></tr></table></figure>
 
 <h3 id="查找当前可支持的镜像"><a href="#查找当前可支持的镜像" class="headerlink" title="查找当前可支持的镜像"></a>查找当前可支持的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass find</span><br></pre></td></tr></table></figure>
 <p><img src="/images/multipass_find.png" alt="multipass find"></p>
 <h3 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h3><blockquote>
-<p>multipass引入了实例(instance)来替代了docker中容器(container)的概念</p>
+<p>multipass引入了实例(instance)来对等docker中容器(container)的概念</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">multipass launch -n workspace -c 4 -d 30G -m 4G 21.10 </span><br><span class="line"><span class="comment"># launch 创建和启动一个ubuntu实例</span></span><br><span class="line"><span class="comment"># -n 指定实例名字</span></span><br><span class="line"><span class="comment"># -c 指定cpu个数</span></span><br><span class="line"><span class="comment"># -d 指定磁盘大小</span></span><br><span class="line"><span class="comment"># -m 指定内存大小</span></span><br><span class="line"><span class="comment"># 21.10 指定Ubuntu版本</span></span><br></pre></td></tr></table></figure>
 
@@ -369,14 +377,14 @@ show_date_time();
 
 <h3 id="进入实例并配置相关环境"><a href="#进入实例并配置相关环境" class="headerlink" title="进入实例并配置相关环境"></a>进入实例并配置相关环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipass sh workspace</span><br></pre></td></tr></table></figure>
 
-<p>配置ip转发：在/etc/sysctl.conf中将net.ipv4.ip_forward设置为1并取消注释，执行sysctl -p下注配置</p>
+<p>配置ip转发：在<code>/etc/sysctl.conf</code>中将<code>net.ipv4.ip_forward</code>设置为<code>1</code>并取消注释，执行<code>sysctl -p</code>下注配置</p>
 <h2 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h2><blockquote>
 <p>在ubuntu虚机中安装squid来实现正向代理</p>
 </blockquote>
 <h3 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install squid -y</span><br></pre></td></tr></table></figure>
 
-<p>修改squid配置：在/etc/squid/squid.conf将http_access deny all修改为http_access allow all<br>然后重启squid： systemctl restart squid</p>
-<h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>firefox中配置http和https代理，代理地址可通过multpass ls查看到，一般为192.168.64.*，端口squid默认为3128</p>
+<p>修改squid配置：在<code>/etc/squid/squid.conf</code>将<code>http_access deny all</code>修改为<code>http_access allow all</code><br>然后重启squid： <code>systemctl restart squid</code></p>
+<h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>firefox中配置http和https代理，代理地址可通过<code>multpass ls</code>查看到，一般为192.168.64.*，端口squid默认为<code>3128</code></p>
 
         <div>
         <div style="text-align:center;color:#555;font-size:14px;">-------------The End-------------</div>
@@ -443,7 +451,7 @@ show_date_time();
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">26k</span>
+    <span title="Symbols count total">27k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
