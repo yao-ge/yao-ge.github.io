@@ -245,19 +245,6 @@
       </tags>
   </entry>
   <entry>
-    <title>multipass research</title>
-    <url>/2022/01/11/multipass-research/Ubuntu/</url>
-    <content><![CDATA[<h1 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h1><p>this is a blog about multipass</p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>virtual</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用multipass + squid代理访问公司内网</title>
     <url>/2022/01/23/squid/network/</url>
     <content><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>在办公设备上,常规环境是在宿主机内直接搭建openvpn,通过openvpn访问公司内网</p>
@@ -311,6 +298,19 @@
         <tag>squid</tag>
         <tag>multipass</tag>
         <tag>virtual machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>multipass research</title>
+    <url>/2022/01/11/multipass-research/Ubuntu/</url>
+    <content><![CDATA[<h1 id="multipass"><a href="#multipass" class="headerlink" title="multipass"></a>multipass</h1><p>this is a blog about multipass</p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>virtual</tag>
       </tags>
   </entry>
   <entry>
