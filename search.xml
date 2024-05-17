@@ -314,21 +314,6 @@
       </tags>
   </entry>
   <entry>
-    <title>test123</title>
-    <url>/2024/05/16/test/network/</url>
-    <content><![CDATA[<p>this is a test</p>
-]]></content>
-      <categories>
-        <category>network</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-        <tag>squid</tag>
-        <tag>multipass</tag>
-        <tag>virtual machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vim configure</title>
     <url>/2021/12/29/vim-configure/vim/</url>
     <content><![CDATA[<h2 id="env-install"><a href="#env-install" class="headerlink" title="env install"></a>env install</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#apt-get是针对ubuntu平台的安装，mac安装可将apt-get更改为brew</span></span><br><span class="line">apt-get update -y </span><br><span class="line">apt-get upgrade -y</span><br><span class="line">apt-get install build-essential cmake vim-nox python3-dev clang libclang-dev clang-tidy clang-format -y</span><br><span class="line">apt-get install mono-complete nodejs default-jdk npm gnutls-bin xdg-utils curl -y</span><br><span class="line">apt-get install golang git -y</span><br><span class="line">apt-get remove</span><br><span class="line">apt-get autoremove</span><br></pre></td></tr></table></figure>
